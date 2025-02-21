@@ -32,7 +32,6 @@ char	*get_next_line(int fd)
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 	{
-		printf("Error: fd inválido o BUFFER_SIZE incorrecto\n");
 		return (NULL);
 	}
 	buff = ft_calloc((BUFFER_SIZE + 1), sizeof(char)); //Memoria dinamica para malloc
@@ -40,10 +39,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	while(1) //buscle infinito para leer datos
 	{
-		printf("Leyendo...\n");
 		count = read(fd, buff, BUFFER_SIZE); //Leer el txt y lo guarda en buff, count son los bytes leidos.
-		printf("Bytes leídos: %zd\n", count);
-		printf("Contenido de buff: %s\n", buff);
 		if (count < 0) //en caso de error libera buff y retorna null.
 		{
 			free(buff);
@@ -57,17 +53,12 @@ char	*get_next_line(int fd)
 		tmp = ft_strjoin(data, buff);
 		free(data);
 		data = tmp;
-		printf("Antes de leer: data = [%s]\n", data ? data : "NULL");
 		if (!data)
 		{
 			free(buff);
 			return(NULL);
 		}
 		endline = ft_strchr(data, '\n'); //busca el final de la linea.
-		if (endline)  
-    		printf("Encontrado '\\n' en la posición: %ld\n", endline - data);  
-		else  
-    		printf("No se encontró '\\n'\n");  
 		if(endline) //si hay '\n' extrae la linea hasta el '\n' y guarda el resto.
 		{	
 			newline = ft_substr(data, 0, (endline - data) + 1); // extrae la linea con los datos de data para comenzar, hasta el '\n' y calcula la longitud para saber el tamaño de la string
