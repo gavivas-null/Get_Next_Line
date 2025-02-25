@@ -1,26 +1,5 @@
 #include "get_next_line.h"
 
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*arr;
-	size_t	totalsize;
-	size_t	i;
-
-	i = 0;
-	totalsize = count * size;
-	if ((SIZE_MAX / size) < count && size != 0)
-		return (NULL);
-	arr = (void *)malloc(totalsize);
-	if (arr == NULL)
-		return (NULL);
-	while (i < totalsize)
-	{
-		((char *)arr)[i] = 0;
-		i++;
-	}
-	return (arr);
-}
-
 char	*get_next_line(int fd)
 {
 	static char	*data; // variable estática para almacenar datos restantes despues del BUFFER_SIZE entre cada llamada;
@@ -88,24 +67,4 @@ char	*get_next_line(int fd)
 		return (newline);
 	}
 	return (NULL);
-}
-
-int	main(void)
-{
-	int		fd;
-	char	*file;
-	char	*str;
-
-	file = "/Users/gabrielvivas/Desktop/get_next_line/prueba.txt";
-	fd = open(file, O_RDONLY);
-	str = get_next_line(fd);
-	while (str)
-	{
-		printf("%s", str);
-		free(str);
-		str = get_next_line(fd);
-	}
-	free(str);
-	close(fd);
-	return(0);
 }
