@@ -1,4 +1,16 @@
- #ifndef GET_NEXT_LINE_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/25 19:56:12 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/02/25 19:56:40 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 32
@@ -9,7 +21,6 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdint.h>
-
 
 //get_next_line.c
 char	*get_next_line(int fd);
