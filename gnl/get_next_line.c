@@ -6,7 +6,7 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 19:47:45 by gavivas-          #+#    #+#             */
-/*   Updated: 2025/02/27 22:28:49 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/02/28 20:18:32 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*get_next_line(int fd)
 	char		*newline;
 	char		*tmp;
 	ssize_t		count;
+
 	if (BUFFER_SIZE <= 0 || fd < 0)
 	{
 		return (NULL);
@@ -39,12 +40,14 @@ char	*get_next_line(int fd)
 		}
 		buff[count] = '\0'; //null al final de la linea leida
 		tmp = ft_strjoin(data, buff); //une en una funcion temporal lo que tiene data (lo restante) con lo que se lee en el segundo llamado.
-		data = tmp; //almacena la nueva linea con todo.
-		if (!data) //si da error libera el buffer y devuelve null.
+		if (!tmp)
 		{
 			free(buff);
+			free(data);
+			data = NULL;
 			return (NULL);
-		}
+		}                                 
+		data = tmp; //almacena la nueva linea con todo.
 		endline = ft_strchr(data, '\n'); //busca el final de cada linea.
 		if (endline) //si el final de la linea existe
 		{
@@ -61,9 +64,7 @@ char	*get_next_line(int fd)
 			return (newline); //retorna la nueva linea hasta el salto de linea.
 		}
 		if (count == 0)
-		{
 			break ;
-		}
 	}
 	free(buff);
 	if (data && *data) //si tada todavia tiene algo guardado
