@@ -6,11 +6,11 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 20:01:06 by gavivas-          #+#    #+#             */
-/*   Updated: 2025/02/27 22:13:48 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/03/03 21:18:23 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/home/gavivas-/Desktop/gnl/get_next_line/get_next_line.h"
+#include "get_next_line.h"
 
 int	main(void)
 {
@@ -18,16 +18,16 @@ int	main(void)
 	char	*file;
 	char	*str;
 
-	file = "/home/gavivas-/Desktop/gnl/prueba.txt";
+	file = "multiple_nlx5";
 	fd = open(file, O_RDONLY);
 	str = get_next_line(fd);
 	while (str)
 	{
-		printf("%s", str);
+		printf("line: %s.", str);
 		free(str);
 		str = get_next_line(fd);
 	}
 	free(str);
 	close(fd);
-	return(0);
+	return (0);
 }

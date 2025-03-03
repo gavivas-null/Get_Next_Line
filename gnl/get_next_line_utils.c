@@ -6,7 +6,7 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 19:47:34 by gavivas-          #+#    #+#             */
-/*   Updated: 2025/02/28 20:29:45 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:52:20 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,13 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	a;
 
-	if(!s)
+	if (!s)
 		return (0);
 	a = 0;
 	while (s[a] != '\0')
 		a++;
 	return (a);
 }
-
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -60,52 +59,33 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	char	*str;
-	size_t	i;
 	size_t	s_len;
+	char	*substr;
+	size_t	i;
 
-	if (!s)
-		return (NULL);
 	s_len = ft_strlen(s);
+	if (s == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
 	if (start >= s_len)
-		return (ft_strdup(""));
-	if (len > s_len - start)
+		len = 0;
+	else if (start + len > s_len)
 		len = s_len - start;
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
+	substr = (char *)malloc((len + 1) * sizeof(char));
+	if (substr == NULL)
 		return (NULL);
 	i = 0;
 	while (i < len && s[start + i] != '\0')
 	{
-		str[i] = s[start + i];
+		substr[i] = s[start + i];
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	size_t	size;
-	size_t	i;
-	char	*cpy;
-
-	if (!s1)
-		return (NULL);
-	size = ft_strlen(s1) + 1;
-	cpy = malloc(sizeof(char) * size);
-	if (!cpy)
-		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		cpy[i] = s1[i];
-		i++;
-	}
-	cpy[i] = '\0';
-	return (cpy);
+	substr[i] = '\0';
+	return (substr);
 }
 
 char	*ft_strjoin(char *s1, char *s2)

@@ -6,14 +6,15 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 19:56:12 by gavivas-          #+#    #+#             */
-/*   Updated: 2025/02/27 22:02:46 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:53:39 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE  32
+#  define BUFFER_SIZE  42
 # endif
 
 # include <unistd.h>
@@ -31,6 +32,5 @@ size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *s1);
 
 #endif
