@@ -6,7 +6,7 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 19:47:45 by gavivas-          #+#    #+#             */
-/*   Updated: 2025/03/03 21:44:44 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/03/04 22:23:42 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,22 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	buff = ft_calloc((BUFFER_SIZE + 1), sizeof(char)); /* calloc */
-	if (!buff) //calloc 
+	if (!buff) //calloc
+	{
+		free(buff);
 		return (NULL); //calloc
+	}
 	while (1)
 	{
 		count = read(fd, buff, BUFFER_SIZE); //lee el archivo
-		if (count <= 0)
+		if (count < 0)
 		{
 			free(buff);
-			if (count < 0 || !data) // si hay error
-			{
-				free(data);
-				data = NULL;
-				return (NULL);
-			}
+			return (NULL);
+		}
+		if (count == 0  && !ft_strchr(data, '\n'))
+		{
+			free(buff);
 			break ;
 		}
 		buff[count] = '\0'; //null al final de la linea leida
@@ -47,7 +49,6 @@ char	*get_next_line(int fd)
 		if (!tmp)
 		{
 			free(buff);
-			free(data);
 			data = NULL;
 			return (NULL);
 		}
@@ -63,14 +64,14 @@ char	*get_next_line(int fd)
 			return (newline); //retorna la nueva linea hasta el salto de linea.
 		}
 	}
-	if (data && *data) //si tada todavia tiene algo guardado
+	if (data && *data) //si data todavia tiene algo guardado
 	{
 		newline = ft_substr(data, 0, ft_strlen(data)); //si es el fin de el archivo retorna hasta el null
 		free(data);
 		data = NULL;
 		return (newline);
 	}
-	free(data);
-	data = NULL;
+	if (data)
+		free(data);
 	return (NULL);
 }

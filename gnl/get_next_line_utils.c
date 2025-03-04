@@ -6,7 +6,7 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 19:47:34 by gavivas-          #+#    #+#             */
-/*   Updated: 2025/03/03 20:52:20 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/03/04 22:24:00 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	*ft_strchr(const char *s, int c)
 
 	l = c;
 	a = 0;
+	if (!s)
+		return (NULL);
 	while (s[a] != '\0' && s[a] != l)
 		a++;
 	if (s[a] == l)
