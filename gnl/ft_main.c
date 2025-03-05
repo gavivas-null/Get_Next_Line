@@ -6,7 +6,7 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 20:01:06 by gavivas-          #+#    #+#             */
-/*   Updated: 2025/03/04 22:27:42 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/03/05 20:12:23 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(void)
 	// file = "/home/gavivas-/Desktop/lunes/giant_line_nl.txt";
 	// file = "/home/gavivas-/Desktop/lunes/giant_line.txt";
 	// file = "/home/gavivas-/Desktop/lunes/hola.txt";
-	// file = "/home/gavivas-/Desktop/lunes/lines_around_10.txt";
+	//file = "/home/gavivas-/Desktop/lunes/lines_around_10.txt";
 	// file = "/home/gavivas-/Desktop/lunes/multiple_line_no_nl";
 	// file = "/home/gavivas-/Desktop/lunes/multiple_line_with_nl";
 	// file = "/home/gavivas-/Desktop/lunes/multiple_nl.txt";
@@ -42,9 +42,9 @@ int	main(void)
 	// file = "/home/gavivas-/Desktop/lunes/nl";
 	// file = "/home/gavivas-/Desktop/lunes/one_line_no_nl.txt";
 	// file = "/home/gavivas-/Desktop/lunes/only_nl.txt";
-	file = "/home/gavivas-/Desktop/lunes/read_error.txt";
+	// file = "/home/gavivas-/Desktop/lunes/read_error.txt";
 	// file = "/home/gavivas-/Desktop/lunes/variable_nls.txt";
-
+	file = "/home/gavivas-/Desktop/lunes/limits.txt";
 																							
 	fd = open(file, O_RDONLY);
 	str = get_next_line(fd);

@@ -6,7 +6,7 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 19:47:45 by gavivas-          #+#    #+#             */
-/*   Updated: 2025/03/04 22:23:42 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/03/05 20:25:55 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ char	*get_next_line(int fd)
 	buff = ft_calloc((BUFFER_SIZE + 1), sizeof(char)); /* calloc */
 	if (!buff) //calloc
 	{
-		free(buff);
 		return (NULL); //calloc
 	}
 	while (1)
@@ -37,6 +36,8 @@ char	*get_next_line(int fd)
 		if (count < 0)
 		{
 			free(buff);
+			free(data);
+			data = NULL;
 			return (NULL);
 		}
 		if (count == 0  && !ft_strchr(data, '\n'))
@@ -49,8 +50,7 @@ char	*get_next_line(int fd)
 		if (!tmp)
 		{
 			free(buff);
-			data = NULL;
-			return (NULL);
+			break;
 		}
 		data = tmp; //almacena la nueva linea con todo.
 		endline = ft_strchr(data, '\n'); //busca el final de cada linea.
@@ -71,7 +71,10 @@ char	*get_next_line(int fd)
 		data = NULL;
 		return (newline);
 	}
-	if (data)
+	else if (data)
+	{	
 		free(data);
+		data = NULL;
+	}
 	return (NULL);
 }
